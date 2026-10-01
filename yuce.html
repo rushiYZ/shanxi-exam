@@ -1,0 +1,868 @@
+<title>陕西常识判断预测卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#F6F6F2;
+  --card:#FFFFFF;
+  --ink:#171A1F;
+  --ink-2:#3D434B;
+  --mute:#757A77;
+  --rule:#DCDED8;
+  --rule-2:#EDEEE9;
+  --mark:#B23A2E;
+  --right:#2C6650;
+  --amber:#8E6414;
+  --shanxi:#8C5A26;
+  --grid:#CFD2CB;
+  --shadow:0 1px 2px rgba(23,26,31,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#131519;
+    --card:#1A1D22;
+    --ink:#E9EAE4;
+    --ink-2:#C3C7C1;
+    --mute:#8E948E;
+    --rule:#2C3037;
+    --rule-2:#22252B;
+    --mark:#E0796B;
+    --right:#6FC79B;
+    --amber:#D6A64B;
+    --shanxi:#D19A5E;
+    --grid:#3A3F46;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#131519;
+  --card:#1A1D22;
+  --ink:#E9EAE4;
+  --ink-2:#C3C7C1;
+  --mute:#8E948E;
+  --rule:#2C3037;
+  --rule-2:#22252B;
+  --mark:#E0796B;
+  --right:#6FC79B;
+  --amber:#D6A64B;
+  --shanxi:#D19A5E;
+  --grid:#3A3F46;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:16px;
+  line-height:1.75;
+  padding-inline:20px;
+  padding-block:0 72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:800px;margin:0 auto}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:20;
+  background:var(--paper);
+  padding-block:14px 12px;
+  border-bottom:1px solid var(--rule);
+  margin-bottom:34px;
+}
+.headrow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand{
+  font-family:"Noto Serif SC",Georgia,serif;
+  font-weight:700;font-size:19px;letter-spacing:.02em;margin:0;
+}
+.headmeta{font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+.tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.chip{
+  font:inherit;font-size:12.5px;
+  padding:5px 12px;
+  border:1px solid var(--rule);
+  border-radius:2px;
+  background:var(--card);
+  color:var(--ink-2);
+  cursor:pointer;
+  transition:border-color .15s,color .15s,background .15s;
+}
+.chip:hover{border-color:var(--mute)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.chip:focus-visible,.qbtn:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+
+/* ---------- intro ---------- */
+.lede{margin:0 0 34px}
+.lede h2{
+  font-family:"Noto Serif SC",Georgia,serif;
+  font-size:27px;line-height:1.35;font-weight:700;
+  margin:0 0 10px;text-wrap:balance;letter-spacing:.01em;
+}
+.lede p{margin:0 0 10px;color:var(--ink-2);font-size:15px;max-width:64ch}
+.rule-top{height:3px;background:var(--mark);width:56px;margin-bottom:18px}
+
+/* ---------- table ---------- */
+.tablebox{overflow-x:auto;margin:26px 0 34px;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--rule-2)}
+thead th{
+  background:var(--rule-2);font-weight:700;font-size:12px;
+  letter-spacing:.06em;color:var(--ink-2);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hi{color:var(--mark);font-weight:700}
+
+/* ---------- section ---------- */
+.sec{margin:44px 0 0}
+.sec > h3{
+  font-family:"Noto Serif SC",Georgia,serif;
+  font-size:17px;font-weight:600;margin:0 0 4px;letter-spacing:.02em;
+  display:flex;align-items:center;gap:10px;
+}
+.sec > h3::after{content:"";flex:1;height:1px;background:var(--rule)}
+.sec > .secnote{margin:0 0 20px;font-size:13px;color:var(--mute)}
+
+/* ---------- question ---------- */
+.q{
+  border-top:1px solid var(--rule);
+  padding-block:22px;
+}
+.q[hidden]{display:none}
+.qhead{display:flex;gap:12px;align-items:flex-start}
+.qno{
+  flex:none;
+  width:26px;height:26px;
+  border:1.5px solid var(--grid);
+  border-radius:2px;
+  display:grid;place-items:center;
+  font-size:12px;font-weight:700;
+  font-variant-numeric:tabular-nums;
+  color:var(--mute);
+  margin-top:2px;
+}
+.qbody{flex:1;min-width:0}
+.stem{margin:0 0 14px;font-size:16px;line-height:1.85;font-family:"Noto Serif SC",Georgia,serif;font-weight:600}
+.stem .lead{color:var(--mute);font-weight:600}
+
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.tag{
+  font-size:11px;letter-spacing:.1em;
+  padding:2px 8px;border-radius:2px;
+  border:1px solid currentColor;
+  font-weight:500;line-height:1.6;
+}
+.tag.t-hot{color:var(--mark)}
+.tag.t-sx{color:var(--shanxi)}
+.tag.t-base{color:var(--mute)}
+
+ol.opts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ol.opts li{
+  display:flex;gap:10px;align-items:flex-start;
+  font-size:15px;line-height:1.7;color:var(--ink-2);
+  padding:6px 9px;border-radius:3px;
+  border:1px solid transparent;
+}
+.bub{
+  flex:none;width:22px;height:22px;margin-top:2px;
+  border:1.5px solid var(--grid);border-radius:2px;
+  display:grid;place-items:center;
+  font-size:11.5px;font-weight:700;
+  font-variant-numeric:tabular-nums;
+  color:var(--mute);
+  transition:background .18s,border-color .18s,color .18s;
+}
+.q.open ol.opts li.is-right{background:var(--rule-2);border-color:var(--rule);color:var(--ink)}
+.q.open ol.opts li.is-right .bub{background:var(--ink);border-color:var(--ink);color:var(--card)}
+
+.qbtn{
+  font:inherit;font-size:12.5px;
+  margin-top:13px;
+  padding:5px 13px;
+  border:1px solid var(--rule);
+  border-radius:2px;
+  background:transparent;color:var(--ink-2);
+  cursor:pointer;
+}
+.qbtn:hover{border-color:var(--mark);color:var(--mark)}
+
+.ans{
+  display:none;
+  margin-top:16px;
+  padding:15px 17px;
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-left:3px solid var(--right);
+  border-radius:2px;
+  box-shadow:var(--shadow);
+}
+.q.open .ans{display:block}
+.anskey{
+  font-size:14px;font-weight:700;color:var(--right);
+  margin:0 0 9px;letter-spacing:.04em;
+}
+.anskey b{font-family:"Noto Serif SC",Georgia,serif;font-size:16px}
+.ans p{margin:0 0 8px;font-size:14px;line-height:1.8;color:var(--ink-2)}
+.ans p:last-child{margin-bottom:0}
+.ans .why{color:var(--mark);font-weight:700}
+.src{
+  margin-top:11px;padding-top:10px;
+  border-top:1px solid var(--rule-2);
+  font-size:12px;color:var(--mute);line-height:1.7;
+}
+.src b{color:var(--ink-2);font-weight:500}
+.need{
+  margin-top:11px;padding:9px 12px;
+  border:1px dashed var(--amber);
+  border-radius:2px;
+  font-size:12.5px;color:var(--amber);line-height:1.7;
+}
+
+/* ---------- checklist ---------- */
+.check{margin:44px 0 0;border:1px solid var(--rule);background:var(--card)}
+.check > h3{
+  font-family:"Noto Serif SC",Georgia,serif;
+  font-size:16px;font-weight:600;margin:0;
+  padding:14px 18px;border-bottom:1px solid var(--rule);
+}
+.check ul{list-style:none;margin:0;padding:0}
+.check li{
+  padding:11px 18px;border-bottom:1px solid var(--rule-2);
+  font-size:14px;line-height:1.75;color:var(--ink-2);
+  display:flex;gap:11px;
+}
+.check li:last-child{border-bottom:0}
+.check li::before{content:"□";color:var(--grid);flex:none;font-size:15px;line-height:1.6}
+.check li em{font-style:normal;color:var(--mark);font-weight:700}
+
+footer{
+  margin-top:46px;padding-top:18px;
+  border-top:1px solid var(--rule);
+  font-size:12.5px;color:var(--mute);line-height:1.8;
+}
+footer strong{color:var(--ink-2);font-weight:500}
+
+@media (max-width:430px){
+  body{padding-inline:16px;font-size:15.5px}
+  .lede h2{font-size:23px}
+  .stem{font-size:15.5px}
+  ol.opts li{font-size:14.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="headrow">
+    <h1 class="brand">陕西常识判断预测卷</h1>
+    <span class="headmeta">2026年10月17日 · A类 · 第1—20题</span>
+  </div>
+  <div class="tools">
+    <button class="chip" id="f-all" aria-pressed="true">全部 20</button>
+    <button class="chip" id="f-hot" aria-pressed="false">高频</button>
+    <button class="chip" id="f-sx" aria-pressed="false">陕西</button>
+    <button class="chip" id="open-all">展开全部</button>
+    <button class="chip" id="close-all">收起全部</button>
+  </div>
+</header>
+
+<div class="lede">
+  <div class="rule-top"></div>
+  <h2>三份真题拆出来的规律，和据此推出的二十道题</h2>
+  <p>2024年10月13日、2025年9月27日、2026年3月28日三份陕西统考A类卷，前20题（常识判断）已逐题拆解。所有预测题的考点，都来自这三个规律，以及2026年3月至9月间真实的全国与陕西文件、新闻。</p>
+  <p>预测不是押题。真题不会重复，但考法会重复；把下面每道题背后的文件读一遍，比背选项有用。</p>
+</div>
+
+<h3 style="font-family:'Noto Serif SC',Georgia,serif;font-size:16px;font-weight:600;margin:0 0 6px">三卷常识判断结构</h3>
+<div class="tablebox">
+  <table>
+    <thead>
+      <tr><th>板块</th><th class="num">2024.10</th><th class="num">2025.9</th><th class="num">2026.3</th><th>本次预测</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>时政理论</td><td class="num">2</td><td class="num">5</td><td class="num hi">7</td><td class="num">7</td></tr>
+      <tr><td>法律</td><td class="num">2</td><td class="num">3</td><td class="num">3</td><td class="num">3</td></tr>
+      <tr><td>经济</td><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">3</td></tr>
+      <tr><td>科技理化生</td><td class="num">4</td><td class="num hi">7</td><td class="num">4</td><td class="num">4</td></tr>
+      <tr><td>人文历史</td><td class="num hi">11</td><td class="num">3</td><td class="num">3</td><td class="num">3</td></tr>
+      <tr><td>其中陕西元素</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num hi">6</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="font-size:14px;color:var(--ink-2);margin:0 0 8px"><strong>时政窗口</strong>：2026年3月卷考的是2025年12月8日政治局会议、2025年12月11日无人机首飞、2026年2月3日中央一号文件——即考前4到7个月。<strong>由此你这次的主战场是2026年3月至9月。</strong>2026年中央一号文件已被3月卷考过，重复概率低。</p>
+<p style="font-size:14px;color:var(--ink-2);margin:0"><strong>陕西元素</strong>：三卷各1到2题，角度都是"陕西＋科技或产业或文化"。本次因应你的要求加密到6题，其中5、6、7、18、19五题依据的是2026年陕西新出文件，排在最高优先级。</p>
+
+<!-- ================= 时政 ================= -->
+<section class="sec">
+  <h3>一、时政理论</h3>
+  <p class="secnote">预测7题。第1、2、5、6、7题依据的是2026年新出文件，优先级最高。</p>
+
+  <article class="q" data-tags="hot">
+    <div class="qhead"><div class="qno">1</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-base">十五五规划纲要</span></div>
+      <p class="stem">2026年3月12日，十四届全国人大四次会议表决通过《中华人民共和国国民经济和社会发展第十五个五年规划和2035年远景目标纲要》。下列关于该纲要主要目标指标的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>纲要设置了20项主要指标，其中民生福祉类指标数量最多，共7项</span></li>
+        <li data-k="B"><span class="bub">B</span><span>纲要提出全社会研发经费投入年均增长5%以上，与"十四五"目标保持一致</span></li>
+        <li data-k="C"><span class="bub">C</span><span>纲要提出单位国内生产总值二氧化碳排放累计降低3.8%左右</span></li>
+        <li data-k="D"><span class="bub">D</span><span>纲要提出粮食综合生产能力达到1.4万亿斤左右</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>20项主要指标的分布是：经济发展3项、创新驱动3项、民生福祉7项、绿色低碳5项、安全保障2项。民生福祉类最多。</p>
+        <p><span class="why">B 错。</span>研发经费投入的目标是年均增长<strong>7%以上</strong>。</p>
+        <p><span class="why">C 错。</span>"十五五"五年累计目标是单位GDP二氧化碳排放<strong>累计降低17%</strong>；3.8%左右是2026年当年的年度目标。这两个数字最容易互换出题。</p>
+        <p><span class="why">D 错。</span>粮食<strong>综合生产能力</strong>目标是1.45万亿斤左右；1.4万亿斤左右是2026年的粮食<strong>产量</strong>年度目标。同样是两个数字的互换。</p>
+        <div class="src"><b>命题依据：</b>2026年3月12日十四届全国人大四次会议表决通过，3月13日全文播发；纲共18篇，含6方面109项重大工程。其他可记数字：数字经济核心产业增加值占GDP比重12.5%；劳动年龄人口平均受教育年限11.7年；人均预期寿命80岁；能源综合生产能力58亿吨标准煤。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot">
+    <div class="qhead"><div class="qno">2</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-base">政府工作报告</span></div>
+      <p class="stem">2026年3月5日，国务院总理李强在十四届全国人大四次会议上作《政府工作报告》。下列关于2026年发展主要预期目标的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>国内生产总值增长5%左右</span></li>
+        <li data-k="B"><span class="bub">B</span><span>城镇新增就业1200万人以上，城镇调查失业率5.5%左右</span></li>
+        <li data-k="C"><span class="bub">C</span><span>居民消费价格涨幅3%左右</span></li>
+        <li data-k="D"><span class="bub">D</span><span>赤字率拟按3%左右安排</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="B">
+        <p class="anskey">正确答案 <b>B</b></p>
+        <p><span class="why">A 错。</span>2026年GDP增长目标为<strong>4.5%—5%</strong>，不是"5%左右"（这是2025年的提法）。这是本次最值得记住的一个变化。</p>
+        <p><span class="why">B 正确。</span>城镇新增就业1200万人以上，城镇调查失业率5.5%左右，与上年持平。</p>
+        <p><span class="why">C 错。</span>居民消费价格涨幅<strong>2%左右</strong>。</p>
+        <p><span class="why">D 错。</span>赤字率拟按<strong>4%左右</strong>安排，赤字规模5.89万亿元、比上年增加2300亿元。</p>
+        <div class="src"><b>命题依据：</b>2026年3月5日李强作报告，3月12日十四届全国人大四次会议表决通过。财政口径：一般公共预算支出规模首次达到30万亿元、比上年增加约1.27万亿元；拟发行超长期特别国债1.3万亿元；另发行特别国债3000亿元；拟安排地方政府专项债券4.4万亿元。其他目标：粮食产量1.4万亿斤左右；单位GDP二氧化碳排放降低3.8%左右；居民收入增长和经济增长同步。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot">
+    <div class="qhead"><div class="qno">3</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-base">7·30政治局会议</span></div>
+      <p class="stem">2026年7月30日，中共中央政治局召开会议，分析研究当前经济形势，部署下半年经济工作。下列关于此次会议及2026年上半年经济形势的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>会议认为今年以来我国经济呈现"动能向新、结构向优"的发展态势</span></li>
+        <li data-k="B"><span class="bub">B</span><span>上半年我国国内生产总值同比增长5.4%，为近5年同期最大增量</span></li>
+        <li data-k="C"><span class="bub">C</span><span>会议要求实施从紧的货币政策和收缩性财政政策，加大逆周期调节力度</span></li>
+        <li data-k="D"><span class="bub">D</span><span>会议提出继续综合整治"内卷式"竞争，但对"人工智能+"行动未作部署</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>"动能向新、结构向优"是这次会议对当前经济态势的定调，会议同时要求"推动经济持续向新向优向好发展"，努力实现"十五五"良好开局。</p>
+        <p><span class="why">B 错。</span>上半年GDP总量69.6万亿元，同比增长<strong>4.7%</strong>；GDP增量3.6万亿元为近5年同期最大。<strong>5.4%是规模以上工业增加值的同比增速</strong>，两个数字被调换了。</p>
+        <p><span class="why">C 错。</span>会议要求实施<strong>更加积极的财政政策和适度宽松的货币政策</strong>，加大逆周期调节力度。</p>
+        <p><span class="why">D 错。</span>会议明确"深入实施'人工智能+'行动，发展智能经济新形态"，同时继续综合整治"内卷式"竞争、常态化解决企业账款拖欠问题。</p>
+        <div class="src"><b>命题依据：</b>2026年7月30日中共中央政治局会议，新华社、央视新闻报道。同期其他上半年数据：制造业增加值占GDP比重升至26.2%；新能源汽车零售渗透率连续三个月超过60%；夏粮总产量3014.9亿斤、首次突破3000亿斤。会议还提出扎实推进水网、新型电网、算力网等"六张网"规划建设。</div>
+        <div class="need">"六张网"的完整六项表述，我检索到的公开报道只确认了水网、新型电网、算力网三项，考前请以新华社会议通稿原文为准，不要按我这里的部分列举去记全部六项。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">4</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">建党105周年</span></div>
+      <p class="stem">2026年是中国共产党成立105周年，也是红军长征胜利90周年。关于2026年开展的相关纪念活动，下列说法正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>"强国复兴有我"群众性主题宣传教育活动由中央宣传部等21家部门联合部署，紧紧围绕庆祝建党105周年、纪念红军长征胜利90周年开展</span></li>
+        <li data-k="B"><span class="bub">B</span><span>相关部门部署的活动以"重走长征路"为主要形式，但明确不组织重温入党誓词活动</span></li>
+        <li data-k="C"><span class="bub">C</span><span>退役军人事务部等部门部署开展的是"追寻·2025·清明祭英烈"活动</span></li>
+        <li data-k="D"><span class="bub">D</span><span>2026年9月30日烈士纪念日向人民英雄敬献花篮仪式在人民大会堂举行</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>2026年5月，中央宣传部、中央统战部、中央社会工作部、国家发展改革委、教育部等21家部门联合印发通知，围绕庆祝建党105周年、纪念红军长征胜利90周年部署"强国复兴有我"群众性主题宣传教育活动。</p>
+        <p><span class="why">B 错。</span>通知明确组织干部群众参加重走长征路、敬献花篮、祭扫烈士墓、<strong>重温入党入团入职誓词</strong>等活动。</p>
+        <p><span class="why">C 错。</span>是"追寻·<strong>2026</strong>·清明祭英烈"，由退役军人事务部、中央网信办、共青团中央、全国少工委四部门于2026年3月联合部署。</p>
+        <p><span class="why">D 错。</span>仪式在<strong>天安门广场</strong>举行，习近平等党和国家领导人出席。</p>
+        <div class="src"><b>命题依据：</b>2026年3月四部门"追寻·2026·清明祭英烈"通知；2026年5月中央宣传部等21部门"强国复兴有我"通知；2026年9月30日烈士纪念日仪式。长征胜利90周年对应的是1936年10月红军三大主力会师。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot sx">
+    <div class="qhead"><div class="qno">5</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-sx">陕西</span></div>
+      <p class="stem">2026年2月24日，陕西省委、省政府召开全省深化开展"三个年"活动全面提升"三服务"质效动员部署会。下列关于陕西"三个年"活动及"三服务"的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>"三个年"活动指高质量项目推进年、营商环境突破年、干部作风能力提升年</span></li>
+        <li data-k="B"><span class="bub">B</span><span>"三服务"指服务发展、服务民生、服务大局</span></li>
+        <li data-k="C"><span class="bub">C</span><span>"三个年"活动是陕西2026年首次提出的新举措</span></li>
+        <li data-k="D"><span class="bub">D</span><span>"八场硬仗"是2026年首次提出的概念</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>"三个年"活动即高质量项目推进年、营商环境突破年、干部作风能力提升年。</p>
+        <p><span class="why">B 错。</span>"三服务"指<strong>服务群众、服务企业、服务基层</strong>。这是2026年新增的关键词。</p>
+        <p><span class="why">C 错。</span>"三个年"活动2023年首次提出，2026年是陕西连续第4年以"三个年"为大主题召开新春第一会。</p>
+        <p><span class="why">D 错。</span>"八场硬仗"2025年已提出，2026年的变化是从"打好"变为"<strong>一体深入</strong>打好"，强调与中央部署一体贯通。</p>
+        <div class="src"><b>命题依据：</b>2026年2月24日全省深化开展"三个年"活动全面提升"三服务"质效动员部署会，省委书记赵一德讲话、省长赵刚主持，陕西省政府网发布。2025年"八场硬仗"的八个方面：教育科技人才、有效投资、提振消费、外贸拓展、重点产业链群建设、稳就业促增收、问题整改、党建引领基层治理。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot sx">
+    <div class="qhead"><div class="qno">6</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-sx">陕西</span></div>
+      <p class="stem">习近平总书记来陕考察、听取陕西省委和省政府工作汇报时，对陕西提出"四个着力"的重要要求。下列不属于"四个着力"的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>着力强化科技创新、建设现代化产业体系</span></li>
+        <li data-k="B"><span class="bub">B</span><span>着力推动城乡融合发展、促进共同富裕</span></li>
+        <li data-k="C"><span class="bub">C</span><span>着力推动发展方式绿色低碳转型、提升生态文明建设水平</span></li>
+        <li data-k="D"><span class="bub">D</span><span>着力推进社会治理现代化、建设更高水平平安陕西</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="D">
+        <p class="anskey">正确答案 <b>D</b></p>
+        <p>第四项"着力"是<strong>着力扩大对内对外开放、打造内陆改革开放高地</strong>，与D项表述不符。</p>
+        <p>完整四项：着力强化科技创新、建设现代化产业体系；着力推动城乡融合发展、促进共同富裕；着力推动发展方式绿色低碳转型、提升生态文明建设水平；着力扩大对内对外开放、打造内陆改革开放高地。</p>
+        <div class="src"><b>命题依据：</b>习近平总书记2023年5月在听取陕西省委和省政府工作汇报时提出。陕西官方表述中，"五个扎实"（2015年）—"五项要求"（2020年）—"四个着力"（2023年）被概括为一脉相承、递进跃升。2026年4月28日、5月22日陕西省委理论学习中心组两次召开扩大会议，专题学习贯通落实这一系列要求，并对照"十五五"规划推动学习贯彻，是本年度陕西宣传重点。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot sx">
+    <div class="qhead"><div class="qno">7</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-sx">陕西</span></div>
+      <p class="stem">2026年4月，陕西省人民政府印发《陕西省国民经济和社会发展第十五个五年规划纲要》。下列关于该纲要主要目标的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>力争地区生产总值年均增长5%左右</span></li>
+        <li data-k="B"><span class="bub">B</span><span>深入实施"单极带动、多点支撑、两区协同"战略</span></li>
+        <li data-k="C"><span class="bub">C</span><span>到2030年全社会研发投入强度达到5%左右</span></li>
+        <li data-k="D"><span class="bub">D</span><span>常住人口城镇化率达到80%左右</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>陕西"十五五"力争地区生产总值年均增长5%左右。</p>
+        <p><span class="why">B 错。</span>是"<strong>双极带动</strong>、多点支撑、<strong>三区协同</strong>"。双极指西安（科技创新、先进制造）与榆林（能源资源、煤化工），三区指关中、陕北、陕南错位发展、联动互补。</p>
+        <p><span class="why">C 错。</span>全社会研发投入强度目标为<strong>3.2%左右</strong>。</p>
+        <p><span class="why">D 错。</span>常住人口城镇化率目标为<strong>70%左右</strong>。</p>
+        <div class="src"><b>命题依据：</b>2026年1月31日陕西省第十四届人民代表大会第四次会议批准，2026年4月2日省政府印发（陕政发〔2026〕4号），4月20日新闻发布会公开。纲要13篇71章，5类21项主要指标，11方面重点工作，谋划600余个重大项目、总投资超3万亿元。其他可记目标：规模以上工业增加值年均增长6.5%左右；城镇累计新增就业200万人以上；制造业增加值占GDP比重提高到18%左右；可再生能源装机规模1.2亿千瓦。</div>
+      </div>
+    </div></div>
+  </article>
+</section>
+
+<!-- ================= 法律 ================= -->
+<section class="sec">
+  <h3>二、法律</h3>
+  <p class="secnote">预测3题。三卷的规律是"新法出台＋民法典案例化"，不考纯概念背诵。</p>
+
+  <article class="q" data-tags="hot">
+    <div class="qhead"><div class="qno">8</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-base">生态环境法典</span></div>
+      <p class="stem">2026年3月12日，十四届全国人大四次会议表决通过《中华人民共和国生态环境法典》，自2026年8月15日起施行。下列关于该法典的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>这是我国继《民法典》之后第二部以"法典"命名的法律</span></li>
+        <li data-k="B"><span class="bub">B</span><span>该法典的调整范围仅限于污染防治，不涉及生态保护与绿色低碳发展</span></li>
+        <li data-k="C"><span class="bub">C</span><span>这是我国第一部以"法典"命名的法律</span></li>
+        <li data-k="D"><span class="bub">D</span><span>该法典由国务院制定并公布</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>继2020年《民法典》之后，生态环境法典是我国第二部以"法典"命名的法律。</p>
+        <p><span class="why">C 错。</span>我国第一部法典是《民法典》。</p>
+        <p><span class="why">D 错。</span>由<strong>全国人民代表大会</strong>表决通过，不是国务院。</p>
+        <p>B项表述过于绝对。法典的编纂方式是把分散的生态环境法律规范系统整合，覆盖污染防治、生态保护、绿色低碳发展等领域。</p>
+        <div class="src"><b>命题依据：</b>2026年3月12日十四届全国人大四次会议表决通过，2026年8月15日起施行。陕西层面已有落地动作：陕西日报、西部法制报2026年5月、8月多次报道"让生态环境法典浸润三秦大地""法典赋能 山青水长"，并称该法典精准适配黄河流域水土流失治理、秦岭生态修复、关中产业转型；延安宜川县设立"黄河流域生态警务联勤站"，司法机关以预防性公益诉讼、替代性修复、劳务代偿等方式强化保护。</div>
+        <div class="need">法典的"第二部法典"定位、通过日期与施行日期，我检索到的多个来源一致；但法典的编、章结构与条文数，请考前以全国人大公布的法律文本为准。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">9</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">新法施行</span><span class="tag t-base">治安管理处罚法</span></div>
+      <p class="stem">新修订的《中华人民共和国治安管理处罚法》自2026年1月1日起施行。下列行为中，属于此次修订新增纳入治安管理处罚范围的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>盗窃他人财物</span></li>
+        <li data-k="B"><span class="bub">B</span><span>高空抛物</span></li>
+        <li data-k="C"><span class="bub">C</span><span>殴打他人造成轻微伤</span></li>
+        <li data-k="D"><span class="bub">D</span><span>故意损毁公私财物</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="B">
+        <p class="anskey">正确答案 <b>B</b></p>
+        <p><span class="why">B 正确。</span>高空抛物是此次修订新增纳入的行为之一。</p>
+        <p>A、C、D三项在修订前的治安管理处罚法中已有规定，不属于新增。</p>
+        <p>此次修订新增纳入管理范围的行为还包括：考试作弊、组织领导传销、损害英雄烈士保护、以抢控驾驶操纵装置等方式干扰公共交通工具正常行驶、升放（燃放）携带明火的升空物体、无人机"黑飞"、未对动物采取安全措施致使动物伤害他人等；同时优化完善了治安案件办理程序。</p>
+        <div class="src"><b>命题依据：</b>新修订的治安管理处罚法，2026年1月1日起施行，新华社及多家媒体"2026年1月1日起施行新规"清单均有列入。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">10</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">民法典·相邻关系</span></div>
+      <p class="stem">老李与老王家相邻，老李在自家院内种了一棵香椿树，树根延伸至老王家房屋地基下方，导致老王家地面开裂。老王要求老李排除妨害，老李以"树在自己院里"为由拒绝。关于本案，下列说法正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>老王只能请求损害赔偿，无权请求排除妨害</span></li>
+        <li data-k="B"><span class="bub">B</span><span>老李有权在自己院内自由种树，老王无权干涉</span></li>
+        <li data-k="C"><span class="bub">C</span><span>老王可以请求老李排除妨害，因相邻关系应按照有利生产、方便生活、团结互助、公平合理的原则处理</span></li>
+        <li data-k="D"><span class="bub">D</span><span>该纠纷只能通过诉讼解决，不能协商或调解</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="C">
+        <p class="anskey">正确答案 <b>C</b></p>
+        <p><span class="why">C 正确。</span>《民法典》第288条规定，不动产的相邻权利人应当按照有利生产、方便生活、团结互助、公平合理的原则，正确处理相邻关系。</p>
+        <p><span class="why">A 错。</span>《民法典》第236条规定，妨害物权或者可能妨害物权的，权利人可以请求排除妨害或者消除危险。排除妨害与损害赔偿可以并行主张，并非只能选其一。</p>
+        <p><span class="why">B 错。</span>行使自己的物权不得损害他人的合法权益，"树在自己院里"不构成免责理由。</p>
+        <p><span class="why">D 错。</span>相邻关系纠纷可以先协商，也可以申请人民调解，诉讼不是唯一途径。</p>
+        <div class="src"><b>命题依据：</b>延续2026年3月卷常识判断第14题（果树树枝越界案）的考法。该卷第14、15、19题分别考相邻关系、交通肇事逃逸、《民法典》居住权，三题都是"给案例问法条"，本次按同一路子出题。</div>
+      </div>
+    </div></div>
+  </article>
+</section>
+
+<!-- ================= 经济 ================= -->
+<section class="sec">
+  <h3>三、经济</h3>
+  <p class="secnote">预测3题。三卷规律：只考经典原理，不考时效性数据。</p>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">11</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">价值规律</span></div>
+      <p class="stem">下列关于价值规律的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>商品的价值量由生产该商品的社会必要劳动时间决定</span></li>
+        <li data-k="B"><span class="bub">B</span><span>价格围绕价值上下波动是对价值规律的否定</span></li>
+        <li data-k="C"><span class="bub">C</span><span>价值规律要求商品交换以使用价值量为基础实行等价交换</span></li>
+        <li data-k="D"><span class="bub">D</span><span>供求关系的变化决定商品的价值</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>商品的价值量由生产该商品的社会必要劳动时间决定，这是价值规律的基本内容之一。</p>
+        <p><span class="why">B 错。</span>价格围绕价值上下波动，恰恰是价值规律发生作用的<strong>表现形式</strong>，不是否定。</p>
+        <p><span class="why">C 错。</span>等价交换以<strong>价值量</strong>为基础，不是使用价值量。</p>
+        <p><span class="why">D 错。</span>供求关系影响价格，但<strong>不能决定价值</strong>。价值由社会必要劳动时间决定。</p>
+        <div class="src"><b>命题依据：</b>2026年3月卷第5题、2024年10月卷第8题均考价值规律与价格，属稳定考点。价值规律的另一必记内容：价值规律会促使商品生产者改进技术、改善经营管理，提高劳动生产率，并在一定条件下引起商品生产者的两极分化。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot">
+    <div class="qhead"><div class="qno">12</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-base">价格歧视</span></div>
+      <p class="stem">某景区对本地居民实行门票半价，对外地游客收取全价。这一"同景不同价"的定价策略，其经济学依据主要是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>本地居民的收入水平普遍高于外地游客</span></li>
+        <li data-k="B"><span class="bub">B</span><span>外地游客对门票的需求价格弹性比本地居民小</span></li>
+        <li data-k="C"><span class="bub">C</span><span>景区运营的边际成本对外地游客更高</span></li>
+        <li data-k="D"><span class="bub">D</span><span>本地居民对门票的需求价格弹性比外地游客小</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="B">
+        <p class="anskey">正确答案 <b>B</b></p>
+        <p><span class="why">B 正确。</span>这种差别定价（价格歧视）成立的前提，是不同消费者群体的需求价格弹性不同。外地游客来一趟不易、替代选择少，需求更刚性、弹性更小，因此可以收全价；本地居民可多次游玩、替代选择多，弹性大，降价能带来更多客流。</p>
+        <p><span class="why">A 错。</span>差别定价的依据是需求弹性，与收入水平高低没有必然关系。</p>
+        <p><span class="why">C 错。</span>多接待一位游客的边际成本，不会因游客来自哪里而不同。</p>
+        <p><span class="why">D 错。</span>把两个群体的弹性说反了。</p>
+        <div class="src"><b>命题依据：</b>直接对标2026年3月卷第10题（航空公司"同座不同价"，考需求价格弹性）。该题型的唯一考点就是"弹性小的收高价、弹性大的收低价"，换个场景就会再考一次。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">13</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">三次分配</span></div>
+      <p class="stem">下列关于我国国民收入分配的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>企业职工工资属于再分配</span></li>
+        <li data-k="B"><span class="bub">B</span><span>个人所得税属于初次分配</span></li>
+        <li data-k="C"><span class="bub">C</span><span>慈善捐赠、志愿服务等属于第三次分配</span></li>
+        <li data-k="D"><span class="bub">D</span><span>社会保险属于初次分配</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="C">
+        <p class="anskey">正确答案 <b>C</b></p>
+        <p><span class="why">C 正确。</span>第三次分配是在道德力量作用下，通过慈善捐赠、志愿服务等方式自愿进行的分配。</p>
+        <p><span class="why">A、D 错。</span>工资属于<strong>初次分配</strong>（按生产要素贡献分配）；社会保险属于<strong>再分配</strong>。</p>
+        <p><span class="why">B 错。</span>个人所得税是政府主导的<strong>再分配</strong>手段。</p>
+        <div class="src"><b>命题依据：</b>对标2026年3月卷第9题（判断哪项属于三次分配，正确项为"以个人名义资助贫困生"）。记忆锚点：初次分配靠市场、再分配靠政府、第三次分配靠道德。</div>
+      </div>
+    </div></div>
+  </article>
+</section>
+
+<!-- ================= 科技 ================= -->
+<section class="sec">
+  <h3>四、科技</h3>
+  <p class="secnote">预测4题。三卷规律：航天成就＋生活物理＋生物医学＋地球科学。</p>
+
+  <article class="q" data-tags="hot">
+    <div class="qhead"><div class="qno">14</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-base">中国航天</span></div>
+      <p class="stem">2026年4月24日是第十一个"中国航天日"。关于2026年我国航天任务，下列说法正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>嫦娥七号探测器计划于2026年发射，将前往月球南极着陆，重点寻找水冰存在的证据</span></li>
+        <li data-k="B"><span class="bub">B</span><span>天问二号已于2026年完成火星采样返回任务</span></li>
+        <li data-k="C"><span class="bub">C</span><span>2026年是中国航天事业创建50周年</span></li>
+        <li data-k="D"><span class="bub">D</span><span>我国已于2026年实现首次载人登月</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>嫦娥七号探测器已于2026年4月9日运抵文昌航天发射场，计划2026年下半年择机发射，前往月球南极着陆，采用"绕、落、巡、飞跃"综合探测方式，重点寻找水冰存在的证据。</p>
+        <p><span class="why">B 错。</span>天问二号是<strong>小行星</strong>探测与采样返回任务（2025年5月29日发射，目标小行星2016HO3）。火星采样返回是<strong>天问三号</strong>的任务，尚在研制阶段。</p>
+        <p><span class="why">C 错。</span>2026年是中国航天事业创建<strong>70周年</strong>。</p>
+        <p><span class="why">D 错。</span>我国载人登月的目标是<strong>2030年前</strong>实现，2026年尚未实现。</p>
+        <div class="src"><b>命题依据：</b>2026年4月24日第十一个"中国航天日"暨中国航天事业创建70周年，国家航天局集中发布重大航天工程进展。同期可记：2026年计划实施神舟二十三号、神舟二十四号两次载人飞行和天舟十号货运补给；神舟二十三号飞行乘组中1名航天员开展1年以上长期驻留试验；新一代载人飞船"梦舟"2026年首飞。</div>
+        <div class="need">神舟二十三号的发射日期与乘组名单，各来源表述略有出入，考前请以中国载人航天工程办公室发布为准，不要背我这里的版本。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">15</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">生活物理</span></div>
+      <p class="stem">下列关于生活中物理现象的解释，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>用高压锅煮食物熟得更快，是因为锅内气压升高使水的沸点降低</span></li>
+        <li data-k="B"><span class="bub">B</span><span>冬天用湿手摸户外的铁栏杆会被"粘住"，是因为手上的水发生了凝固</span></li>
+        <li data-k="C"><span class="bub">C</span><span>夏天从冰箱取出的饮料瓶外壁"出汗"，是瓶内水分渗出到瓶壁的结果</span></li>
+        <li data-k="D"><span class="bub">D</span><span>汽车后视镜成像利用的是光的折射原理</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="B">
+        <p class="anskey">正确答案 <b>B</b></p>
+        <p><span class="why">B 正确。</span>铁栏杆导热快，手上的水迅速放热凝固成冰，把手"粘住"，属于凝固现象。</p>
+        <p><span class="why">A 错。</span>气压升高使水的<strong>沸点升高</strong>，而非降低，水温因此能超过100℃，食物熟得更快。</p>
+        <p><span class="why">C 错。</span>是空气中的水蒸气遇冷<strong>液化</strong>附着在瓶壁上，水并非从瓶内渗出。</p>
+        <p><span class="why">D 错。</span>后视镜利用的是光的<strong>反射</strong>。</p>
+        <div class="src"><b>命题依据：</b>2026年3月卷第20题（光学现象辨析）、2025年9月卷第11—15题（微波炉、吸管、无线充电、光的物理特性）、2024年10月卷第9题（共振、重力矩）均为此类。三卷无一例外都考了生活物理，是必拿分板块。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">16</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">生物医学</span></div>
+      <p class="stem">关于人体健康常识，下列说法正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>人体缺乏维生素C会引起夜盲症</span></li>
+        <li data-k="B"><span class="bub">B</span><span>胰岛素分泌不足会导致糖尿病</span></li>
+        <li data-k="C"><span class="bub">C</span><span>人体最大的消化腺是胰腺</span></li>
+        <li data-k="D"><span class="bub">D</span><span>O型血是万能供血者，可以给任何血型的人大量输血</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="B">
+        <p class="anskey">正确答案 <b>B</b></p>
+        <p><span class="why">B 正确。</span>胰岛素能调节糖的代谢，分泌不足会使血糖升高，导致糖尿病。</p>
+        <p><span class="why">A 错。</span>缺乏维生素C引起<strong>坏血病</strong>；缺乏维生素A才引起夜盲症。</p>
+        <p><span class="why">C 错。</span>人体最大的消化腺是<strong>肝脏</strong>，胰腺是第二大消化腺。</p>
+        <p><span class="why">D 错。</span>O型血在少量应急情况下可输给其他血型，但"万能供血者"的说法已被现代输血医学否定，大量输血必须同型输注，否则会引起凝集反应。</p>
+        <div class="src"><b>命题依据：</b>2026年3月卷第16、17题（类黄酮、近视的成因与矫正）为生物医学类。同类常考点：缺乏维生素B1引起脚气病、缺乏维生素D引起佝偻病、缺乏铁引起缺铁性贫血。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot sx">
+    <div class="qhead"><div class="qno">17</div><div class="qbody">
+      <div class="tags"><span class="tag t-sx">陕西</span><span class="tag t-base">秦岭·地理</span></div>
+      <p class="stem">关于秦岭生态环境保护，下列说法正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>秦岭是我国南北气候的分界线，也是长江、黄河两大水系的重要水源涵养区</span></li>
+        <li data-k="B"><span class="bub">B</span><span>秦岭主峰是太白山，海拔约3767米，位于甘肃境内</span></li>
+        <li data-k="C"><span class="bub">C</span><span>陕西"十五五"规划提出确保秦岭地区生态质量指数稳定在Ⅱ类</span></li>
+        <li data-k="D"><span class="bub">D</span><span>南水北调中线工程水源地主要位于河南，与陕西无关</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>秦岭—淮河一线是我国南北气候的分界线，秦岭同时也是长江、黄河两大水系的重要水源涵养区。</p>
+        <p><span class="why">B 错。</span>太白山海拔3767.2米，是秦岭主峰，位于<strong>陕西</strong>宝鸡眉县境内，不在甘肃。</p>
+        <p><span class="why">C 错。</span>陕西"十五五"规划的表述是确保秦岭地区生态质量指数稳定在<strong>Ⅰ类</strong>。</p>
+        <p><span class="why">D 错。</span>南水北调中线工程的水源地汉江、丹江主要流经<strong>陕西</strong>，陕西是中线工程的核心水源区，宁陕等县同时是中线工程与引汉济渭工程的核心水源地。</p>
+        <div class="src"><b>命题依据：</b>陕西"十五五"规划纲要第十一篇"加快提升生态文明建设水平"提出当好秦岭生态卫士，健全"条例护山、规划控山、智慧管山、系统治山"体系；守牢黄河流域生态保护基准线，实施黄河干流水质保Ⅱ类和支流水质消劣行动；确保"一泓清水永续北上"。省秦岭生态环境保护监管平台已建成"天空地网"一体化监测监管体系；牛背梁国家级自然保护区森林覆盖率提升至92.29%，秦岭羚牛种群从78头增长至约350头；黄金峡大坝生态鱼道全长1908米，2026年度增殖放流65万尾鱼苗，累计投放284万余尾。</div>
+      </div>
+    </div></div>
+  </article>
+</section>
+
+<!-- ================= 人文 ================= -->
+<section class="sec">
+  <h3>五、人文历史</h3>
+  <p class="secnote">预测3题。三卷规律：陕西文化、文物古迹必占1至2题。</p>
+
+  <article class="q" data-tags="hot sx">
+    <div class="qhead"><div class="qno">18</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-sx">陕西</span><span class="tag t-base">考古</span></div>
+      <p class="stem">2026年，陕西多项考古与文化遗产工作取得新进展。下列说法正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>石峁遗址已列入《中国世界文化遗产预备名单》</span></li>
+        <li data-k="B"><span class="bub">B</span><span>周原遗址首次入选"全国十大考古新发现"</span></li>
+        <li data-k="C"><span class="bub">C</span><span>秦咸阳城遗址尚未被公布为国家考古遗址公园</span></li>
+        <li data-k="D"><span class="bub">D</span><span>石峁遗址位于陕西省延安市</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>石峁遗址列入《中国世界文化遗产预备名单》，78项申遗工作任务清单已梳理完成并全面启动。</p>
+        <p><span class="why">B 错。</span>周原遗址是<strong>第三次</strong>入选"全国十大考古新发现"，不是首次。</p>
+        <p><span class="why">C 错。</span>秦咸阳城遗址<strong>已挂牌</strong>国家考古遗址公园。</p>
+        <p><span class="why">D 错。</span>石峁遗址位于陕西省<strong>榆林市</strong>神木市，不在延安。</p>
+        <div class="src"><b>命题依据：</b>2026年2月4日全省文物局长会议通报：2025年度陕西新发现文物点5000余处；石峁遗址列入《中国世界文化遗产预备名单》；秦咸阳城遗址挂牌国家考古遗址公园；周原遗址第三次入选"全国十大考古新发现"。石峁研究新进展：出土石器上首次鉴定出大麻和苘麻韧皮纤维遗存，揭示史前纺织生产技术；皇城台出土近1.7万枚骨针及残次品；东南约两公里的牛沙墕发现疑似"卫星城"遗存。周原新发现：南墙外侧壕沟出土53片带字甲骨，其中一片被暂定名为"文王访祭"卜甲。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="hot sx">
+    <div class="qhead"><div class="qno">19</div><div class="qbody">
+      <div class="tags"><span class="tag t-hot">高频</span><span class="tag t-sx">陕西</span><span class="tag t-base">地方性法规</span></div>
+      <p class="stem">2026年，陕西省十四届人大常委会审议通过新修订的《陕西省古树名木保护条例》，自2026年11月1日起施行。下列关于该条例及陕西古树名木的说法，正确的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>条例设"特殊保护专章"，对树龄5000年以上的古树名木实行特殊保护</span></li>
+        <li data-k="B"><span class="bub">B</span><span>全国树龄5000年以上的古树名木共10棵，其中陕西有3棵</span></li>
+        <li data-k="C"><span class="bub">C</span><span>黄帝陵古柏群是我国现存最年轻的古柏群</span></li>
+        <li data-k="D"><span class="bub">D</span><span>古树名木经林业主管部门批准后可以采伐</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="A">
+        <p class="anskey">正确答案 <b>A</b></p>
+        <p><span class="why">A 正确。</span>条例设"特殊保护专章"，对5000年以上的古树名木实行特殊保护，可适度扩大保护范围，并要求安装视频监控、病虫害防治、防雷击、地下消防栓、气象监测等设施。</p>
+        <p><span class="why">B 错。</span>全国5棵树龄5000年以上的古树名木<strong>全部在陕西</strong>，分别是黄帝手植柏（轩辕柏）、保生柏、老君柏、仓颉手植柏、洛南古柏。</p>
+        <p><span class="why">C 错。</span>黄帝陵古柏群是我国现存<strong>最古老和数量最大</strong>的古柏群。</p>
+        <p><span class="why">D 错。</span>条例明确古树名木<strong>禁止采伐</strong>。</p>
+        <div class="src"><b>命题依据：</b>2026年陕西省十四届人大常委会第二十五次会议通过，2026年11月1日起施行，2026年9月陕西日报、中国环境保护协会等集中报道"陕西给5000岁+古树用上特殊保护"。条例还鼓励依托黄帝陵、仓颉庙、周公庙等历史文化遗产挖掘古树名木的历史和文化价值。另：2026年5月17日省政府公布决定，废止2009年公布的《陕西省黄帝陵保护管理办法》。</div>
+      </div>
+    </div></div>
+  </article>
+
+  <article class="q" data-tags="base">
+    <div class="qhead"><div class="qno">20</div><div class="qbody">
+      <div class="tags"><span class="tag t-base">常规</span><span class="tag t-base">历史典故</span></div>
+      <p class="stem">陕西历史底蕴深厚。下列历史事件或典故，其发生地在今陕西省境内的是（　　）。</p>
+      <ol class="opts">
+        <li data-k="A"><span class="bub">A</span><span>卧薪尝胆</span></li>
+        <li data-k="B"><span class="bub">B</span><span>杯酒释兵权</span></li>
+        <li data-k="C"><span class="bub">C</span><span>鸿门宴</span></li>
+        <li data-k="D"><span class="bub">D</span><span>淝水之战</span></li>
+      </ol>
+      <button class="qbtn">看答案</button>
+      <div class="ans" data-answer="C">
+        <p class="anskey">正确答案 <b>C</b></p>
+        <p><span class="why">C 正确。</span>鸿门宴发生于秦末，项羽驻军鸿门，地在今陕西西安临潼区东，属陕西省境内。</p>
+        <p><span class="why">A 错。</span>卧薪尝胆是越王勾践的故事，地在今浙江一带。</p>
+        <p><span class="why">B 错。</span>杯酒释兵权是宋太祖赵匡胤的事，发生在今河南开封。</p>
+        <p><span class="why">D 错。</span>淝水之战是东晋与前秦之间的战役，地在今安徽寿县一带。</p>
+        <div class="src"><b>命题依据：</b>2024年10月卷第11题（典故与历史人物对应）、第6题（和氏璧与四大名玉，含陕西蓝田玉），2026年3月卷第12题（诗词与陕西寺院）为同类陕西文史题。同类的陕西必记点：四大名玉中的蓝田玉产自陕西；"制图六体"的裴秀（2024年10月卷第20题）；西安是十三朝古都。</div>
+      </div>
+    </div></div>
+  </article>
+</section>
+
+<div class="check">
+  <h3>考前七天复核清单</h3>
+  <ul>
+    <li>把<em>十五五规划纲要</em>的20项主要指标原文过一遍，特别是研发经费7%、数字经济12.5%、受教育年限11.7年、预期寿命80岁、碳排放累计降17%、粮食综合生产能力1.45万亿斤这六个数字。</li>
+    <li>把<em>2026年政府工作报告</em>与2025年报告的数字并排抄一遍，重点区分GDP"4.5%—5%"与上年"5%左右"、赤字率4%与3%、CPI 2%与3%。</li>
+    <li>读一遍<em>2026年7月30日政治局会议</em>的新华社通稿原文，尤其确认"六张网"的完整表述——我在本卷中只核实到水网、新型电网、算力网三项。</li>
+    <li>把<em>陕西省"十五五"规划纲要</em>的"双极带动、多点支撑、三区协同"和"四个着力"背下来，这两组提法陕西卷连年考。</li>
+    <li>查一遍<em>2026年8月至9月</em>的陕西省委省政府新文件，特别是2026年9月2日发布的《关于推动城市高质量发展的实施意见》，它在本卷定稿时刚发布，来不及编成预测题，但正落在时政窗口内。</li>
+    <li>把<em>2026年10月</em>上半月的全国时政补上（本卷定稿于10月1日），尤其是长征胜利90周年纪念大会的规格与提法。</li>
+    <li>《生态环境法典》的编章结构与条文数，以全国人大公布的法律文本为准。</li>
+    <li>神舟二十三号的发射日期与乘组名单，以中国载人航天工程办公室发布为准。</li>
+  </ul>
+</div>
+
+<footer>
+  <p><strong>关于这份预测卷：</strong>全部20道题的题干均为我依据真题风格原创，不是任何渠道的真题或押题资料。每题下的"命题依据"栏注明了考点所对应的真实文件与事件，可逐条回溯核查。</p>
+  <p>凡我未能在多个来源间交叉核实的细节，已在题下用虚线框单独标出，请以官方原文为准。定稿日期为2026年10月1日，距考试还有16天，此后新发生的时政需自行补入。</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var qs = Array.prototype.slice.call(document.querySelectorAll('.q'));
+
+  qs.forEach(function(q){
+    var btn = q.querySelector('.qbtn');
+    var ans = q.querySelector('.ans');
+    var key = ans ? ans.getAttribute('data-answer') : null;
+    if(!btn || !ans) return;
+
+    btn.addEventListener('click', function(){
+      var open = q.classList.toggle('open');
+      btn.textContent = open ? '收起答案' : '看答案';
+      if(open && key){
+        Array.prototype.forEach.call(q.querySelectorAll('ol.opts li'), function(li){
+          li.classList.toggle('is-right', li.getAttribute('data-k') === key);
+        });
+      } else {
+        Array.prototype.forEach.call(q.querySelectorAll('ol.opts li'), function(li){
+          li.classList.remove('is-right');
+        });
+      }
+    });
+  });
+
+  var filters = {
+    all: document.getElementById('f-all'),
+    hot: document.getElementById('f-hot'),
+    sx:  document.getElementById('f-sx')
+  };
+
+  function apply(mode){
+    qs.forEach(function(q){
+      var tags = (q.getAttribute('data-tags') || '').split(/\s+/);
+      var show = mode === 'all' || tags.indexOf(mode) !== -1;
+      q.hidden = !show;
+    });
+    Object.keys(filters).forEach(function(k){
+      if(filters[k]) filters[k].setAttribute('aria-pressed', String(k === mode));
+    });
+    document.querySelectorAll('.sec').forEach(function(sec){
+      var any = Array.prototype.some.call(sec.querySelectorAll('.q'), function(q){ return !q.hidden; });
+      sec.hidden = !any;
+    });
+  }
+
+  Object.keys(filters).forEach(function(k){
+    if(filters[k]) filters[k].addEventListener('click', function(){ apply(k); });
+  });
+
+  function setAll(open){
+    qs.forEach(function(q){
+      var btn = q.querySelector('.qbtn');
+      var ans = q.querySelector('.ans');
+      var key = ans ? ans.getAttribute('data-answer') : null;
+      q.classList.toggle('open', open);
+      if(btn) btn.textContent = open ? '收起答案' : '看答案';
+      if(ans){
+        Array.prototype.forEach.call(q.querySelectorAll('ol.opts li'), function(li){
+          li.classList.toggle('is-right', open && li.getAttribute('data-k') === key);
+        });
+      }
+    });
+  }
+
+  var oa = document.getElementById('open-all');
+  var ca = document.getElementById('close-all');
+  if(oa) oa.addEventListener('click', function(){ setAll(true); });
+  if(ca) ca.addEventListener('click', function(){ setAll(false); });
+})();
+</script>
